@@ -1,0 +1,266 @@
+1.Reverse the string
+
+x = "accenture"
+print(x[::-1])
+
+**************************************************************************
+
+2.Swap the cases for a string "AcCeNtUrE"
+
+x = "AcCeNtUrE"
+print(x.swapcase())
+
+**************************************************************************
+
+3.Input is "accenture", count the occurances of each character and print the output in dictionary like {key:val} key - letter , val - count.
+
+x = "accenture"
+d = {}
+for i in x:
+    d[i] = 0
+    for j in x:
+        if i == j:
+            d[i] = d.get(i) + 1 
+print(d)
+
+**************************************************************************
+
+4.You have to generate a list of  numbers from 1 to 50 and then separate the list into odd_list and even_list.
+
+x = []
+y = []
+z = []
+for i in range(1,51):
+    x.append(i)
+    if i % 2 == 0:
+        y.append(i)
+    else:
+        z.append(i)
+print(x)
+print(y)
+print(z)
+
+**************************************************************************
+
+5.You have a list from 1 to 50 print the numbers if it is divisible by 3 print "fizz", if it is divisible by 5 print "buzz", if it is divisible by 3 and 5 print "fizz-buzz".
+
+x = []
+for i in range(1,51):
+    x.append(i)
+for i in x:
+    if i % 3 == 0 and i % 5 == 0:
+        print("fizz-buzz")
+    elif i % 3 == 0 and i % 5 != 0:
+        print("fizz")
+    elif i % 5 == 0 and i % 3 != 0:
+        print("buzz")
+    else:
+        print(i)
+
+**************************************************************************
+
+6.In a string "accenture", Print the count of vowels in a string like "1a2e1u"
+
+x = "accenture"
+a = 0 
+e = 0
+u = 0
+for i in x:
+    if i == 'a':
+        a = a + 1
+    if i == 'e':
+        e = e + 1
+    if i == 'u':
+        u = u + 1
+        
+s = "{0}a{1}e{2}u"
+print(s.format(a,e,u))
+
+**************************************************************************
+
+7.In a string "ga24nbv2k6jg523jg2545lsfwe" print the sum of digits in the string and characters separately.
+
+x = "ga24nbv2k6jg523jg2545lsfwe"
+
+d = "1234567890"
+sm = 0
+cr = 0
+for i in x:
+    if i in d:
+         sm = sm + int(i)
+    else:
+        cr = cr + 1
+print(sm,cr)
+
+**************************************************************************
+
+8.You have to generate a list of  numbers from 1 to 10, and then print the pair of numbers whose sum is 9.
+
+num = []
+for i in range(1,11):
+    num.append(i)
+n = len(num)
+for i in range(0,n):
+    for j in range(0,n):
+        if (num[i] + num[j] == 9):
+            print(num[i] ," ",num[j])
+
+**************************************************************************
+
+9.Find anagram for two given string ex. add, dad --> anagram
+
+x = "add"
+y = "dad"
+if sorted(x) == sorted(y):
+    print("Anagram")
+else:
+    print("Not Anagram")
+
+**************************************************************************
+
+10.Check whether a number is Prime or not. If prime display it as prime .if not prime find its prime divisor
+
+x = int(input("Enter a number "))
+flag = 0
+l = []
+p = []
+for i in range(2, x-1):
+    if x % i == 0:
+        print("Not a prime")
+        flag = 1 
+        break
+else:
+    print("Prime")
+if flag == 1:
+    for a in range(2, x-1):
+        if x % a == 0:
+            l.append(a)
+    for b in l:
+        for c in range(2,b):
+            if b % c == 0:
+                break
+        else:
+            p.append(b)
+print("Prime divisor ",p)
+
+**************************************************************************
+
+11.Create a tuple which have a numbers from 1 to 5, then add a character "a" to that tuple.
+
+t = (1,2,3,4,5)
+l = list(t)
+l.append('a')
+t1 = tuple(l)
+print(t1)
+
+**************************************************************************
+
+12.Check whether the given string is Palindrome or not and get the input from user.
+
+x = input()
+y = x[::-1]
+if x == y:
+    print("Palindrome")
+else:
+    print("Not Palindrome")
+
+**************************************************************************
+
+13.Write program to print multiplication table.
+
+a = int(input())
+for i in range(1,11):
+    print(a*i)
+
+**************************************************************************
+
+14.Print the Fibonacci series up to 50
+
+a = -1
+b = 1
+c = 0
+for i in range(1,11):
+    c = a + b
+    a = b
+    b = c
+    print(c)
+
+**************************************************************************
+
+15.Write a Python program that accepts a hyphen-separated sequence of words as input and prints the words in a hyphen-separated sequence after sorting them alphabetically. 
+Sample Items : green-red-yellow-black-white
+Expected Result : black-green-red-white-yellow
+
+a = "green-red-yellow-black-white"
+b = a.split("-")
+c = sorted(b)
+x = "-".join(c)
+print(x)
+
+**************************************************************************
+
+16.Write a Python function that takes a list and returns a new list with unique elements of the first list. Without using set
+Sample List : [1,2,3,3,3,3,4,5]
+Unique List : [1, 2, 3, 4, 5]
+
+def unique(lt = []):
+    l = []
+    for i in lt:
+        if i not in l:
+            l.append(i)
+    return l
+x = [1,2,3,3,3,3,4,5]
+ul = unique(x)
+print(ul)
+
+
+**************************************************************************
+
+17.Write a Python function to check whether a string is a pangram or not. 
+Note : Pangrams are words or sentences containing every letter of the alphabet at least once.
+For example : "The quick brown fox jumps over the lazy dog"
+
+x = "The quick brown fox jumps over the lazy dog"
+y = "abcdefghijklmnopqrstuvwxyz"
+for i in y:
+    if i not in x:
+        print("Not Pangrams")
+        break
+else:
+    print("Pangrams")
+
+**************************************************************************
+
+18.Write a program that asks the user to input 5 integers, and then prints the largest odd number that was entered. If no odd number was entered, it should print a message to that effect.
+
+x = []
+for i in range(5):
+    y = int(input())
+    x.append(y)
+max = 0
+for i in x:
+    if i % 2 !=0 and i > max :
+        max = i 
+if max != 0:
+    print("Largest odd number is ", max)
+else:
+    print("No odd number was entered")
+
+**************************************************************************
+
+19.Write a Python program which accepts the radius of a circle from the user and compute the area.
+
+a = int(input())
+print(3.14 * a *a)
+
+**************************************************************************
+
+20.Find the factorial of the given number.
+
+num = int(input())
+factorial = 1
+for i in range(1,num + 1):
+    factorial = factorial*i
+print(factorial)
+
+**************************************************************************
