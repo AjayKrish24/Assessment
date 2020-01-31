@@ -1,0 +1,127 @@
+
+1)
+
+def gcd(a,b):
+    l = []
+    for i in range(2,100):
+        if a % i == 0 and b % i == 0:
+            l.append(i)    
+    print("GCD is " max(l))
+a = int(input())
+b = int(input())
+gcd(a,b)
+
+***********************************************************************
+
+2)
+
+def is_power(a,b):
+    if a % b == 0:
+        return True
+    else:
+        return False
+a = int(input())
+b = int(input())
+print(is_power(a,b))
+
+***********************************************************************
+
+3)
+
+def facti(f):
+    p = 1 
+    for i in range(1,f+1):
+        p = p * i 
+    print(p)
+def factr(f):
+    if f ==0 or f==1:
+        return 1
+    else:
+        return f*factr(f-1)
+f = int(input())
+facti(f)
+print(factr(f))
+
+***********************************************************************
+
+4)
+
+num = 10011
+b = 0 
+i = 0
+while(num):
+    ld = num % 10
+    num = int(num / 10)
+    b = b + ld * (2 ** i)
+    i = i + 1 
+print(b)
+
+***********************************************************************
+
+5)
+
+def sumDigit(s):
+    x = "abcdefghijklmnopqrstuvwxyz"
+    sum = 0
+    for i in s:
+        if i not in x:
+            sum = sum + int(i)
+    print(sum)
+    
+s = input()
+sumDigit(s)
+
+
+***********************************************************************
+
+6)
+
+def findAnEven(l):
+    for i in range(0,len(l)):
+        try:
+            if l[i] % 2 == 0:
+                print(l[i])
+                break
+            elif i == len(l)-1:
+                raise ValueError("List l does not contain an even number")
+        except ValueError as e:
+            print(e)
+l = [3,11,21,9,1]
+findAnEven(l)
+
+***********************************************************************
+
+7)
+
+def ispalindrome(s):
+    x = "abcdefghijklmnopqrstuvwxyz"
+    y = s.lower()
+    s1 = ""
+    for i in y:
+        if i in x:
+            s1 = s1 + i
+    print(s1)
+    s2 = s1[::-1]
+    print(s2)
+    if s1 in s2:
+        print("Palindrome")
+    else:
+        print("Not Palindrome")
+s = input()
+ispalindrome(s)
+
+***********************************************************************
+
+8)
+
+def eval_loop():
+    while True:
+        a = input()
+        if a != 'done':
+            s = eval(a)
+            print(s)
+        else:
+            return s
+print(eval_loop())
+
+***********************************************************************

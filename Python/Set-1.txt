@@ -1,0 +1,160 @@
+1)
+
+x = int(input())
+y = int(input())
+z = int(input())
+a = []
+a.append(x)
+a.append(y)
+a.append(z)
+max = 0
+for i in a:
+    if i % 2 != 0 and i > max:
+        max = i
+if max != 0:
+    print("Largest odd number is ", max)
+else:
+    print("No odd number was entered")
+
+************************************************************************
+
+2)
+
+def right_justify(s):
+    print(((70 - len(s)) * " ") , s)
+right_justify("Cigna")
+
+************************************************************************
+
+3)
+
+a = []
+for i in range(10):
+    x = int(input())
+    a.append(x)
+max = 0
+for i in a:
+    if i % 2 != 0 and i > max:
+        max = i
+if max != 0:
+    print("Largest odd number is ", max)
+else:
+    print("No odd number was entered")
+
+
+************************************************************************
+
+4)
+
+a)
+>>> import math
+>>> r=5
+>>> x=((4/3)*(math.pi)*(r**3))
+>>> x
+
+523.5987755982989
+
+b)
+>>> a = ((0.6*24.95)+3) + 59 * ((0.6*24.95)+0.75)
+>>> a
+
+945.4499999999999
+
+c)
+
+x = (6*60*60)+(52*60)
+y = 2*((8*60)+15)
+z = 3*((7*60)+12)
+a = x+y+z
+hr = int(a/(60*60))
+mins = int(a%(60*60)/60)
+sec = int(a%(60*60)%60)
+print(hr,":",mins,":",sec)
+
+7 : 30 : 6
+
+
+************************************************************************
+
+5)
+
+a = int(input())
+for i in range(1,a):
+    for j in range(1,6):
+        if i ** j == a:
+            print(i," ",j)
+
+************************************************************************
+
+6)
+
+s = "1.23,2.4,3.123"
+l = []
+l = s.split(",")
+sum = 0.0
+for i in range(0,len(l)):
+    sum = sum + float(l[i])
+print(sum)
+
+************************************************************************
+
+7)
+
+def isln(s1,s2):
+    if s1 in s2:
+        print("Same")
+    else:
+        print("Not Same")
+x = input()
+y = input()
+isln(x,y)
+
+************************************************************************
+
+8)
+
+def getRatios(vect1, vect2):
+    l = []
+    for i in range(0,len(vect1)):
+        try:
+            a = vect1[i]/vect2[i]
+            l.append(a)
+        except ZeroDivisionError:
+            print("Divide by Zero Error")
+    return l
+l1 = [1,2,3,4,0]
+l2 = [1,2,0,6,7]
+print(getRatios(l1,l2))
+
+************************************************************************
+
+9)
+
+>>> width = 17
+>>> height = 12.0
+>>> delimiter = '.'
+>>> print(width/2)
+8
+>>> print(type(width/2))
+<type 'int'>
+>>> print(width/2.0)
+8.5
+>>> print(type(width/2.0))
+<type 'float'>
+>>> print(height/3)
+4.0
+>>> print(type(height/3))
+<type 'float'>
+>>> print(1 + 2 * 5)
+11
+>>> print(type(1 + 2 * 5))
+<type 'int'>
+>>> print(delimiter * 5)
+.....
+>>> print(type(delimiter * 5))
+<type 'str'>
+
+************************************************************************
+
+10)
+
