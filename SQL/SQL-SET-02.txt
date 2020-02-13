@@ -51,7 +51,13 @@ mysql> select * from gardener;
 
 4)Write a query to find the plant name which required seeds less than 20 which plant on 14-APR
 
-
+mysql> select p.name from planted pl inner join plant p on p.plantid=pl.plantfk where pl.seeds<20 and month(date1)=4 and day(date1)=14;
++--------+
+| name   |
++--------+
+| Carrot |
++--------+
+1 row in set (0.02 sec)
 
 ***************************************************************************************************
 
