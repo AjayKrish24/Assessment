@@ -1,0 +1,108 @@
+1)
+
+import functools
+
+string=input("Enter a string : ")
+num = list(filter(lambda x:x.isdigit(),string))
+num_sum = functools.reduce(lambda x,y:int(x)+int(y),num)
+print(num_sum)
+
+#=======================o/p======================================
+
+Enter a string : 12jys68c7q                                                                                                                    
+24
+
+
+***************************************************************************************************
+
+2)
+
+num = 5
+for i in range (0, num) :
+        for x in range (0, num) :
+            print (end=" ")
+        for y in range (0, i + 1) :
+            print ("* ", end="")
+        print ("\r")
+        num = num - 1
+
+#=======================o/p======================================
+
+     *                                                                                                                        
+    * *                                                                                                                       
+   * * *                                                                                                                      
+  * * * *                                                                                                                     
+ * * * * * 
+
+***************************************************************************************************
+
+3)
+
+string = input("Enter a string : ")
+camel_str = ""
+for x in string:
+    ascii = ord(x)
+    if(ascii >= 97 and ascii <= 122):
+        ascii = ascii-32
+        camel_str = camel_str + chr(ascii)
+    elif ascii >= 65 and ascii<=90:
+        ascii = ascii + 32
+        camel_str = camel_str + chr(ascii)
+    else:
+        camel_str = camel_str + chr(ascii)
+print(camel_str)
+
+
+#=======================o/p======================================
+
+Enter a string : WeLcOmE tO pYtHON                                                                                            
+wElCoMe To PyThon
+
+***************************************************************************************************
+
+4)
+
+import re
+
+email = re.findall(r"[\w]{2,64}@[\w]{2,10}\.[\w]{2,3}","ajaykrish@gmail.com a@aj.com xyazd@yahoo.com krishwur9@gmail.com")
+print(email)
+
+#=======================o/p======================================
+
+['ajaykrish@gmail.com', 'xyazd@yahoo.com', 'krishwur9@gmail.com']
+
+***************************************************************************************************
+
+5)
+
+string = input("Enter a string : ")
+vowel_sum = 0
+vowel = {"a":1,"e":2,"i":3,"o":4,"u":5}
+for x in string:
+    for k,v in vowel.items():
+        if x == k:
+            vowel_sum = vowel_sum + v
+print(vowel_sum)
+
+#=======================o/p======================================
+
+Enter a string : elephant                                                                                                     
+5
+
+***************************************************************************************************
+
+6)
+
+#=======================o/p======================================
+
+***************************************************************************************************
+
+7)
+
+
+***************************************************************************************************
+
+
+***************************************************************************************************
+
+
