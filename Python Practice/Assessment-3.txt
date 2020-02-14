@@ -1,0 +1,101 @@
+3)
+
+import re 
+
+num = int(input("Enter a number : "))
+email = []
+r = []
+for i in range(0,num):
+    email.append(input())
+for i in email:
+    if re.findall(r"[\w]{1,64}@[a-z]{2,10}\.[a-z]{1,50}", i):
+        r.append(i)
+print(r)
+
+
+***************************************************************************************************
+5)
+
+import functools
+
+num = int(input())
+user_dict = {}
+username_list = []
+for i in range(0,num):
+    username = input()
+    username_list.append(username)
+avg_name = input("Enter a name to find avg :")
+for user in username_list:
+    user_split = user.split(" ")
+    avg = (functools.reduce(lambda x,y: int(x)+int(y),user_split[1::]))/len(user_split[1::])
+    user_dict[user_split[0]] = avg
+    
+print(user_dict[avg_name])
+
+***************************************************************************************************
+
+1)
+
+num = int(input("enter the no of words: "))
+words = []
+print("Enter the strings : ")
+for i in range(num):
+    words.append(input())
+words_unique = set(words)
+print(words_unique)
+print(len(words_unique))
+for i in words_unique:
+    print(words.count(i),end=" ")
+
+
+***************************************************************************************************
+
+2)
+
+import math
+
+num = int(input("enter the numbers: "))
+a = []
+rational_number = 1
+for i in range(num):
+    numerator = int(input())                    
+    denominator = int(input())                     
+    string = str(numerator) + " " + str(denominator)
+    a.append(string)
+for i in a:
+    number = i.split(" ")
+    rational_number = rational_number * (int(number[0]) / int(number[1]))
+rat = rational_number.as_integer_ratio()
+for i in rat:
+    print(i, end = " ")
+
+***************************************************************************************************
+4)
+
+number = int(input("Enter a number : "))
+for i in range(1, number+1):
+    for j in range(1, i):
+        print(j, end = " ")
+    print(i, end = " ")
+    for j in range(i-1,0,-1):
+        print(j, end = " ")
+    print()
+
+
+***************************************************************************************************
+
+7)
+
+a = [2,1]
+b = [3,4]
+cartesion_product = []
+for i in range(len(a)):
+    for j in range(len(b)):
+        tuple_cart =(a[i],b[j])
+        cartesion_product.append(tuple_cart)
+print(cartesion_product)
+
+
+***************************************************************************************************
+
+
