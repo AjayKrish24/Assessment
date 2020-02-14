@@ -135,6 +135,24 @@ Valid email ajay.@gamil.com
 
 ***************************************************************************************************
 
+8)
+
+l = ["wcab","wcde","wcbe"]
+dic = {}
+a = []
+for i in l:
+    a.append(i[2])
+    dic[i[2]] = i
+a.sort()
+element = []
+for i in a:
+    if i in dic:
+        element.append(dic.get(i))
+print("Sorted based on 3rd element :", element)
+
+#=======================o/p======================================
+
+Sorted based on 3rd element : ['wcab', 'wcbe', 'wcde']
 
 ***************************************************************************************************
 
