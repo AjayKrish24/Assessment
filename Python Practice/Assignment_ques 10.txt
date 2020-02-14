@@ -9,7 +9,8 @@ print(num_sum)
 
 #=======================o/p======================================
 
-Enter a string : 12jys68c7q                                                                                                              24
+Enter a string : 12jys68c7q                                                                                                              
+24
 
 ***************************************************************************************************
 
@@ -62,12 +63,16 @@ wElCoMe To PyThon
 
 import re
 
-email = re.findall(r"[\w]{2,64}@[\w]{2,10}\.[\w]{2,3}","ajaykrish@gmail.com a@aj.com xyazd@yahoo.com krishwur9@gmail.com")
-print(email)
+email = input("Enter a email : ")
+if re.findall(r"[\w]{1,64}@[\w]{2,10}\.[\w]{2,3}", email):
+    print("Valid email", email)
+else:
+    print("Invalid")
 
 #=======================o/p======================================
 
-['ajaykrish@gmail.com', 'xyazd@yahoo.com', 'krishwur9@gmail.com']
+Enter a email : ajay@gmail.com                                                                                                            
+Valid email ajay@gmail.com
 
 ***************************************************************************************************
 
@@ -108,12 +113,25 @@ else:
 
 #=======================o/p======================================
 
-Enter a number : 45654                                                                                                                    45654  is a palindrome
+Enter a number : 45654                                                                                                                    
+45654  is a palindrome
 
 ***************************************************************************************************
 
 7)
 
+import re
+
+email = input("Enter a email : ")
+if re.findall(r"[\w]{2,64}\.@[\w]{2,10}\.[\w]{2,3}",email):
+    print("Valid email", email)
+else:
+    print("Invalid")
+
+#=======================o/p======================================
+
+Enter a email : ajay.@gamil.com                                                                                                          
+Valid email ajay.@gamil.com
 
 ***************************************************************************************************
 
