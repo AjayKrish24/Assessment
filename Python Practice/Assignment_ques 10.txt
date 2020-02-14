@@ -9,9 +9,7 @@ print(num_sum)
 
 #=======================o/p======================================
 
-Enter a string : 12jys68c7q                                                                                                                    
-24
-
+Enter a string : 12jys68c7q                                                                                                              24
 
 ***************************************************************************************************
 
@@ -93,7 +91,24 @@ Enter a string : elephant
 
 6)
 
+num = int(input("Enter a number : "))
+if num >= 0:
+    temp = num
+    rev = 0
+    while num > 0:
+        rem = num % 10
+        rev = (rev * 10) + rem
+        num = int( num / 10)
+    if temp == rev:
+        print(temp," is a palindrome")
+    else:
+        print(temp," is not a palindrome")
+else:
+    print(num," is not a palindrome")
+
 #=======================o/p======================================
+
+Enter a number : 45654                                                                                                                    45654  is a palindrome
 
 ***************************************************************************************************
 
