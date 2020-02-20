@@ -108,13 +108,11 @@ import calendar
 dob = input("Enter Birthdate (yyyy-mm-dd) : ")
 date = dob.split("-")
 day = calendar.weekday(int(date[0]),int(date[1]),int(date[2]))
-print(day)
 print(calendar.day_name[day])
 
 #=======================o/p======================================
 
-Enter Birthdate (yyyy-mm-dd) : 2020-03-24                                                                                                                
-1                                                                                                                                                        
+Enter Birthdate (yyyy-mm-dd) : 2020-03-24                                                                                                                                                                                                                                                                        
 Tuesday
 
 # ***************************************************************************************************
