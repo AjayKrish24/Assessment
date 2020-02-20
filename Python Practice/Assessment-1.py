@@ -43,23 +43,23 @@ Oops you are out of chances better luck next time
 
 # 2)
 
-d={'one':'1','two':'2','three':'3','four':'4','five':'5','six':'6','seven':'7','eight':'8','nine':'9'}
-e={'plus':'+','minus':'-','multily':'*','divide':'/'}
-s=input("Enter the expression: \n")
-l=s.split(" ")
-for k in d:
-    if l[0]==k:
-        a=d.get(k)
-    if l[2]==k:
-        b=d.get(k)
-for key in e:
-    if l[1]==key:
-        x=a+e.get(key)+b
-b = eval(x)
-print(d[b])
+num_dic = {"one":"1","two":"2","three":"3","four":"4","five":"5","six":"6","seven":"7","eight":"8","nine":"9","plus":"+","minus":"-","divide":"%","product":"*"}
+
+exp = input("Enter the string: ")
+exp_list = exp.split(" ")
+a = ""
+for x in exp_list:
+  for k,v in num_dic.items():
+    if x == k:
+      a = a + num_dic.get(k)
+number = str(eval(a))
+for x,y in num_dic.items():
+  if number == y:
+    print(x)
 
 #=======================o/p======================================
-
+Enter the string: one plus two                                                                                                                           
+three 
 
 ***************************************************************************************************
 
