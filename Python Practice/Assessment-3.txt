@@ -97,5 +97,15 @@ print(cartesion_product)
 
 
 ***************************************************************************************************
+8)
 
+num = int(input("Enter number of room : "))
+s = input()
+li = s.split(" ")
+unique_list = set(li)
+for i in unique_list:
+    if li.count(i) == 1:
+        print(i)
+        break
 
+***************************************************************************************************
