@@ -49,13 +49,13 @@ exp = input("Enter the string: ")
 exp_list = exp.split(" ")
 a = ""
 for x in exp_list:
-  for k,v in num_dic.items():
-    if x == k:
-      a = a + num_dic.get(k)
+    for k,v in num_dic.items():
+        if x == k:
+            a = a + num_dic.get(k)
 number = str(eval(a))
 for x,y in num_dic.items():
-  if number == y:
-    print(x)
+    if number == y:
+        print(x)
 
 #=======================o/p======================================
 Enter the string: one plus two                                                                                                                           
