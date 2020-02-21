@@ -1,0 +1,6 @@
+2020-02-21 18:05:07,005 - Database connected
+2020-02-21 18:05:07,007 - Maximum - sold product with product details fetched
+2020-02-21 18:05:07,008 - Minimum - sold product with product details fetched
+2020-02-21 18:05:28,975 - Billing Date 
+2020-02-21 18:05:44,223 - Product code 
+2020-02-21 18:05:44,263 - Successfully inserted
