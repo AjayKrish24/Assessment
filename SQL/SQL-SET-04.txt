@@ -1,0 +1,118 @@
+
+1)Find the names of all students who are friends with someone named Gabriel. (1 point possible)
+
+mysql> select name from highschooler h
+    -> join friend f on h.id = f.id1
+    -> where id2 in (select id from highschooler where name="Gabriel");
++-----------+
+| name      |
++-----------+
+| Jordan    |
+| Cassandra |
+| Andrew    |
+| Alexis    |
+| Jessica   |
++-----------+
+5 rows in set (0.00 sec)
+
+*******************************************************************************************************************************************************
+
+2)For every student who likes someone 2 or more grades younger than themselves, return that student's name and grade, and the name and grade of the student they like. (1 point possible)
+
+*****************************************************************************************************************************************************
+
+3)For every pair of students who both like each other, return the name and grade of both students. Include each pair only once, with the two names in alphabetical order. (1 point possible)
+
+
+*****************************************************************************************************************************************************
+
+4)Find all students who do not appear in the Likes table (as a student who likes or is liked) and return their names and grades. Sort by grade, then by name within each grade. (1 point possible)
+
+
+*****************************************************************************************************************************************************
+
+5)For every situation where student A likes student B, but we have no information about whom B likes (that is, B does not appear as an ID1 in the Likes table), return A and B's names and grades. (1 point possible)
+
+*****************************************************************************************************************************************************
+
+6)Find names and grades of students who only have friends in the same grade. Return the result sorted by grade, then by name within each grade. (1 point possible)
+
+
+*****************************************************************************************************************************************************
+
+7)For each student A who likes a student B where the two are not friends, find if they have a friend C in common (who can introduce them!). For all such trios, return the name and grade of A, B, and C. (1 point possible)
+
+
+*****************************************************************************************************************************************************
+
+8)Find the difference between the number of students in the school and the number of different first names. (1 point possible)
+
+mysql> select (count(name)- count(distinct name)) as no_of_student from highschooler;
++---------------+
+| no_of_student |
++---------------+
+|             2 |
++---------------+
+1 row in set (0.00 sec)
+
+*****************************************************************************************************************************************************
+
+9)Find the name and grade of all students who are liked by more than one other student. (1 point possible)
+
+mysql> select name, grade from highschooler h where id in (select id2 from likes group by id2 having count(id2)>1);
++-----------+-------+
+| name      | grade |
++-----------+-------+
+| Cassandra |     9 |
+| Kris      |    10 |
++-----------+-------+
+2 rows in set (0.00 sec)
+
+*****************************************************************************************************************************************************
+
+10)For every situation where student A likes student B, but student B likes a different student C, return the names and grades of A, B, and C. (1 point possible)
+
+
+*****************************************************************************************************************************************************
+
+11)Find those students for whom all of their friends are in different grades from themselves. Return the students' names and grades.(1 point possible)
+
+
+*****************************************************************************************************************************************************
+
+12)What is the average number of friends per student? (Your result should be just one number.) (1 point possible)
+
+mysql> select avg(a) as avg_no_friends from (select count(*) as a from highschooler h join friend f on h.id = f.id1 group by f.id1) as t;
++----------------+
+| avg_no_friends |
++----------------+
+|         2.5000 |
++----------------+
+1 row in set (0.00 sec)
+
+*****************************************************************************************************************************************************
+
+13)Find the number of students who are either friends with Cassandra or are friends of friends of Cassandra. Do not count Cassandra, even though technically she is a friend of a friend.
+
+mysql> select count(*) from (select id1 from friend f join highschooler h on h.id = f.id1 where id2 in (select f.id2 from highschooler h join friend f on h.id = f.id1 where h.name = "Cassandra") and name != "Cassandra" union (select f.id2 from highschooler h join friend f on h.id = f.id1 where h.name = "Cassandra")) as a;
++----------+
+| count(*) |
++----------+
+|        7 |
++----------+
+1 row in set (0.00 sec)
+
+*****************************************************************************************************************************************************
+
+14)Find the name and grade of the student(s) with the greatest number of friends. (1 point possible)
+
+mysql> select name, grade from (select name, grade, dense_rank() over(order by count(f.id1) desc) as r from highschooler h join friend f on h.id = f.id1 group by f.id1) as t where r = 1;
++--------+-------+
+| name   | grade |
++--------+-------+
+| Andrew |    10 |
+| Alexis |    11 |
++--------+-------+
+2 rows in set (0.09 sec)
+
+*****************************************************************************************************************************************************

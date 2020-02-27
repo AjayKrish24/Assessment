@@ -1,0 +1,139 @@
+
+1)Fetch publisher information who have publish_city <> author_city and check if publish_city = author_country . display the correct publisher_city along with other publisher information based on author_city
+
+select p.publish_id,p.publish_name,publish_city as correct_publish_city,publish_start_date,branches from publisher p join author a on p.publish_city<>a.author_city and p.publish_city=a.author_country;
++------------+--------------------------+----------------------+--------------------+----------+
+| publish_id | publish_name             | correct_publish_city | publish_start_date | branches |
++------------+--------------------------+----------------------+--------------------+----------+
+| PB02       | Summer Night Publication | Canada               | 2019-08-31         | 25       |
++------------+--------------------------+----------------------+--------------------+----------+
+1 row in set (0.00 sec)
+
+*****************************************************************************************************************************************************
+
+2)Fetch authors_name, author_country, publish_city, publish_start_date, branches who have publications with most number of branches by century
+
+select p.publish_id,author_name,author_country,publish_city,publish_start_date,branches from author a join publisher p on a.publish_id=p.publish_id group by publish_start_date having p.publish_id =(select publish_id from publisher where year(publish_start_date)<2000 order by branches desc limit 1) or p.publish_id =(select publish_id from publisher where year(publish_start_date)>2000 order by branches desc limit 1);
++------------+----------------+----------------+--------------+--------------------+----------+
+| publish_id | author_name    | author_country | publish_city | publish_start_date | branches |
++------------+----------------+----------------+--------------+--------------------+----------+
+| PB01       | William Norton | UK             | Berlin       | 1929-04-21         | 10       |
+| PB04       | C.J.Wilde      | USA            | New Jersy    | 2008-05-24         | 9        |
++------------+----------------+----------------+--------------+--------------------+----------+
+2 rows in set (0.00 sec)
+
+*****************************************************************************************************************************************************
+
+3)Fetch publisher details who have authors in same city and get corresponding author details who belong to same country
+
+ select author_id,author_name,author_country,author_city,a.publish_id,publish_name,publish_city from author a join publisher p on a.publish_id=p.publish_id where author_city=publish_city
+    -> union
+    -> select author_id,author_name,author_country,author_city,a.publish_id,publish_name,publish_city from author a join publisher p on a.publish_id=p.publish_id where author_country in (select author_country from author a join publisher p on a.publish_id=p.publish_id where author_city=publish_city);
++-----------+----------------+----------------+---------------+------------+-----------------------+--------------+
+| author_id | author_name    | author_country | author_city   | publish_id | publish_name          | publish_city |
++-----------+----------------+----------------+---------------+------------+-----------------------+--------------+
+| AUT006    | Butler Andre   | UK             | London        | PB03       | Novel Publisher Ltd.  | London       |
+| AUT010    | Mary Coffing   | USA            | New Jersy     | PB04       | Mark Book Sales       | New Jersy    |
+| AUT001    | William Norton | UK             | Cambridge     | PB01       | Jex Max Publication   | Berlin       |
+| AUT002    | C.J.Wilde      | USA            | San Francisco | PB04       | Mark Book Sales       | New Jersy    |
++-----------+----------------+----------------+---------------+------------+-----------------------+--------------+
+4 rows in set (0.00 sec)
+
+*****************************************************************************************************************************************************
+4)Fetch authors who have incorrect author_country for same author_city. Display correct author_country along with all author_information
+
+*****************************************************************************************************************************************************
+5)Fetch authors who do not have publisher from their country
+
+*****************************************************************************************************************************************************
+6)Fetch author details if first character of publisher name is same as author_name
+
+select publish_name, author_name from publisher p join author a on p.publish_id = a.publish_id where substring(publish_name,1,1) = substring(author_name,1,1);
++---------------------+----------------------+
+| publish_name        | author_name          |
++---------------------+----------------------+
+| Jex Max Publication | John Betjeman Hunter |
+| Mark Book Sales     | Mary Coffing         |
++---------------------+----------------------+
+
+*****************************************************************************************************************************************************
+7)Fetch author details who have more than one initial before their name
+
+select * from author where author_name like "%.%.%";
++-----------+-----------------+----------------+---------------+------------+
+| author_id | author_name     | author_country | author_city   | publish_id |
++-----------+-----------------+----------------+---------------+------------+
+| AUT002    | C.J.Wilde       | USA            | San Francisco | PB04       |
+| AUT005    | S.B.Swaminathan | INDIA          | Delhi         | PB01       |
++-----------+-----------------+----------------+---------------+------------+
+2 rows in set (0.00 sec)
+
+*****************************************************************************************************************************************************
+8)Fetch author details who do not have initial in their name
+
+select * from author where author_name not like "%.%";
++-----------+----------------------+----------------+-------------+------------+
+| author_id | author_name          | author_country | author_city | publish_id |
++-----------+----------------------+----------------+-------------+------------+
+| AUT001    | William Norton       | UK             | Cambridge   | PB01       |
+| AUT003    | John Betjeman Hunter | RUSSIA         | Moscow      | PB01       |
+| AUT004    | John Betjeman Hunter | CANADA         | Toronto     | PB03       |
+| AUT006    | Butler Andre         | UK             | London      | PB03       |
+| AUT008    | Andrew Jeff          | GERMANY        | Berlin      | PB02       |
+| AUT009    | Drek Tailor          | Australia      | Melbourne   | PB01       |
+| AUT010    | Mary Coffing         | USA            | New Jersy   | PB04       |
++-----------+----------------------+----------------+-------------+------------+
+7 rows in set (0.00 sec)
+
+*****************************************************************************************************************************************************
+9)Fetch author details who have lower case in author_name
+
+select * from author where author_name regexp "[a-z]";
++-----------+----------------------+----------------+---------------+------------+
+| author_id | author_name          | author_country | author_city   | publish_id |
++-----------+----------------------+----------------+---------------+------------+
+| AUT001    | William Norton       | UK             | Cambridge     | PB01       |
+| AUT002    | C.J.Wilde            | USA            | San Francisco | PB04       |
+| AUT003    | John Betjeman Hunter | RUSSIA         | Moscow        | PB01       |
+| AUT004    | John Betjeman Hunter | CANADA         | Toronto       | PB03       |
+| AUT005    | S.B.Swaminathan      | INDIA          | Delhi         | PB01       |
+| AUT006    | Butler Andre         | UK             | London        | PB03       |
+| AUT007    | E. Howard            | EUROPE         | Berlin        | PB03       |
+| AUT008    | Andrew Jeff          | GERMANY        | Berlin        | PB02       |
+| AUT009    | Drek Tailor          | Australia      | Melbourne     | PB01       |
+| AUT010    | Mary Coffing         | USA            | New Jersy     | PB04       |
++-----------+----------------------+----------------+---------------+------------+
+10 rows in set (0.00 sec)
+*****************************************************************************************************************************************************
+
+10)Fetch author information and publisher information who have publisher with recent publish_start_date.
+
+select * from author a join publisher p on p.publish_id=a.publish_id order by publish_start_date desc limit 1;
++-----------+-------------+----------------+-------------+------------+------------+--------------------------+--------------+--------------------+----------+
+| author_id | author_name | author_country | author_city | publish_id | publish_id | publish_name             | publish_city | publish_start_date | branches |
++-----------+-------------+----------------+-------------+------------+------------+--------------------------+--------------+--------------------+----------+
+| AUT008    | Andrew Jeff | GERMANY        | Berlin      | PB02       | PB02       | Summer Night Publication | Canada       | 2019-08-31         | 25       |
++-----------+-------------+----------------+-------------+------------+------------+--------------------------+--------------+--------------------+----------+
+1 row in set (0.00 sec)
+
+*****************************************************************************************************************************************************
+
+11)Fetch count of authors belong to same continent(eg. Berlin -> Europe)
+
+select count(*) as author_count,continents from
+    -> (select *,case when author_city="Berlin" or author_city="London" or  author_city="Cambridge" then "Europe"
+    -> when  author_city="San fransisco" or  author_city="Toronto" or  author_city="New jersy" then "America"
+    -> when  author_city="Moscow" or  author_city="Delhi" then "Asia"
+    -> else "Australia" end as continents
+    -> from author)as temp group by continents;
++--------------+------------+
+| author_count | continents |
++--------------+------------+
+|            4 | Europe     |
+|            2 | Australia  |
+|            2 | Asia       |
+|            2 | America    |
++--------------+------------+
+4 rows in set (0.00 sec)
+
+*****************************************************************************************************************************************************
