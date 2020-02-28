@@ -17,8 +17,8 @@ select p.publish_id,author_name,author_country,publish_city,publish_start_date,b
 +------------+----------------+----------------+--------------+--------------------+----------+
 | publish_id | author_name    | author_country | publish_city | publish_start_date | branches |
 +------------+----------------+----------------+--------------+--------------------+----------+
-| PB01       | William Norton | UK             | Berlin       | 1929-04-21         | 10       |
-| PB04       | C.J.Wilde      | USA            | New Jersy    | 2008-05-24         | 9        |
+| PB01       | William Norton | UK             | Berlin       | 1929-04-21         |       10 |
+| PB02       | Andrew Jeff    | GERMANY        | Canada       | 2019-08-31         |       25 |
 +------------+----------------+----------------+--------------+--------------------+----------+
 2 rows in set (0.00 sec)
 
