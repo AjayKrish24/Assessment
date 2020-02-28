@@ -13,14 +13,19 @@ select p.publish_id,p.publish_name,publish_city as correct_publish_city,publish_
 
 2)Fetch authors_name, author_country, publish_city, publish_start_date, branches who have publications with most number of branches by century
 
-select p.publish_id,author_name,author_country,publish_city,publish_start_date,branches from author a join publisher p on a.publish_id=p.publish_id group by publish_start_date having p.publish_id =(select publish_id from publisher where year(publish_start_date)<2000 order by branches desc limit 1) or p.publish_id =(select publish_id from publisher where year(publish_start_date)>2000 order by branches desc limit 1);
-+------------+----------------+----------------+--------------+--------------------+----------+
-| publish_id | author_name    | author_country | publish_city | publish_start_date | branches |
-+------------+----------------+----------------+--------------+--------------------+----------+
-| PB01       | William Norton | UK             | Berlin       | 1929-04-21         |       10 |
-| PB02       | Andrew Jeff    | GERMANY        | Canada       | 2019-08-31         |       25 |
-+------------+----------------+----------------+--------------+--------------------+----------+
-2 rows in set (0.00 sec)
+select author_name,author_country,publish_city,publish_start_date,publish_name,branches from (select a.author_name,a.author_country,p.publish_city,p.publish_start_date,p.publish_name,p.branches, rank () over (order by branches desc)r from author a join  publisher p on a.publish_id=p.publish_id where year(publish_start_date)>2000)t where r=1
+    -> union
+    -> select author_name,author_country,publish_city,publish_start_date,publish_name,branches from (select a.author_name,a.author_country,p.publish_city,p.publish_start_date,p.publish_name,p.branches, rank () over (order by branches desc)r1 from author a join  publisher p on a.publish_id=p.publish_id where year(publish_start_date)<2000)t1 where r1=1;
++----------------------+----------------+--------------+--------------------+--------------------------+----------+
+| author_name          | author_country | publish_city | publish_start_date | publish_name             | branches |
++----------------------+----------------+--------------+--------------------+--------------------------+----------+
+| Andrew Jeff          | GERMANY        | Canada       | 2019-08-31         | Summer Night Publication |       25 |
+| William Norton       | UK             | Berlin       | 1929-04-21         | Jex Max Publication      |       10 |
+| John Betjeman Hunter | RUSSIA         | Berlin       | 1929-04-21         | Jex Max Publication      |       10 |
+| S.B.Swaminathan      | INDIA          | Berlin       | 1929-04-21         | Jex Max Publication      |       10 |
+| Drek Tailor          | Australia      | Berlin       | 1929-04-21         | Jex Max Publication      |       10 |
++----------------------+----------------+--------------+--------------------+--------------------------+----------+
+5 rows in set (0.25 sec)
 
 *****************************************************************************************************************************************************
 
