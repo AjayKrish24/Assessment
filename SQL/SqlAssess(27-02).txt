@@ -47,8 +47,33 @@ select author_name,author_country,publish_city,publish_start_date,publish_name,b
 *****************************************************************************************************************************************************
 4)Fetch authors who have incorrect author_country for same author_city. Display correct author_country along with all author_information
 
+select a.author_id,a.author_name,a.author_country,a.author_city from author a join author b on a.author_city=b.author_city where a.author_country<>b.author_country;
++-----------+-------------+----------------+-------------+
+| author_id | author_name | author_country | author_city |
++-----------+-------------+----------------+-------------+
+| AUT008    | Andrew Jeff | GERMANY        | Berlin      |
+| AUT007    | E. Howard   | EUROPE         | Berlin      |
++-----------+-------------+----------------+-------------+
+2 rows in set (0.00 sec)
+
 *****************************************************************************************************************************************************
 5)Fetch authors who do not have publisher from their country
+
+select author_id,author_name,author_country,author_city from (select author_id,author_name,author_country,
+    -> CASE WHEN publish_city="berlin" and author_country not in("germany","europe") then "true" when publish_city="new jersy"
+    -> and author_country<>"usa" then "true"  when publish_city="london" and author_country not in("uk","europe") then "true"
+    -> when author_city="canada" and publish_city<>"canada" then "true"end as publish_city,author_city, a.publish_id,publish_name
+    -> from author a join publisher p on a.publish_id=p.publish_id)as temp where publish_city is not null;
++-----------+----------------------+----------------+-------------+
+| author_id | author_name          | author_country | author_city |
++-----------+----------------------+----------------+-------------+
+| AUT001    | William Norton       | UK             | Cambridge   |
+| AUT003    | John Betjeman Hunter | RUSSIA         | Moscow      |
+| AUT004    | John Betjeman Hunter | CANADA         | Toronto     |
+| AUT005    | S.B.Swaminathan      | INDIA          | Delhi       |
+| AUT009    | Drek Tailor          | Australia      | Melbourne   |
++-----------+----------------------+----------------+-------------+
+5 rows in set (0.00 sec)
 
 *****************************************************************************************************************************************************
 6)Fetch author details if first character of publisher name is same as author_name
