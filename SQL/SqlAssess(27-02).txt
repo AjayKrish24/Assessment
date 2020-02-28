@@ -47,7 +47,7 @@ select author_name,author_country,publish_city,publish_start_date,publish_name,b
 *****************************************************************************************************************************************************
 4)Fetch authors who have incorrect author_country for same author_city. Display correct author_country along with all author_information
 
-select author_id,author_name,case when author_city="berlin" then "GERMANY" else author_country end as author_country,author_city from author;
+select author_id,author_name,case when author_city in (select a.author_city from author a join author b on a.author_city=b.author_city where a.author_country<>b.author_country) then "GERMANY" else author_country end as author_country,author_city from author;
 +-----------+----------------------+----------------+---------------+
 | author_id | author_name          | author_country | author_city   |
 +-----------+----------------------+----------------+---------------+
